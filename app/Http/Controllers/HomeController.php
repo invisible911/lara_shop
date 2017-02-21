@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\User;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -25,6 +27,14 @@ class HomeController extends Controller
     public function index()
     {
         $products = Product::paginate(6);
+        return view('shop.index',compact("products"));
+    }
+
+
+
+    public function user_profile()
+    {
+        dd($user = Auth::user());
         return view('shop.index',compact("products"));
     }
 }

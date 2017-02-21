@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Auth;
+
 use Session;
 
 use App\Cart;
@@ -17,31 +18,26 @@ class CartsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showcart(Request $request)
+    public function showCart(Request $request)
     {
         if (Auth::check())
         {
             $user_id = Auth::user()->id;
 
-            $customer_id = $user_id;
+            $cart = Cart::firstOrCreate(compact("user_id"));
 
-            $cart = Cart::firstOrCreate(compact("customer_id"));
-
-            dd($id);
+            dd($cart);
         }
         else{
 
             $session_id = Session::getId();
 
-            $customer_id = $session_id;
+            $cart = Cart::firstOrCreate(compact("session_id"));
 
-            $cart = Cart::firstOrCreate(compact("customer_id"));
-
-            dd($cart->created_at);
+            dd($cart);
 
         }
     }
-
 
     /**
      * Display a listing of the resource.

@@ -29,6 +29,50 @@ class Productseeder extends Seeder
         ]);
         $product->save();
 
+        $product = new \App\Product([
+            'imagePath' => 'https://images-na.ssl-images-amazon.com/images/I/41IArx8dswL._SS500.jpg',
+            'title' => 'Northern Passages',
+            'description' => '  --The Sadies',
+            'price' => 10,
+            'instock' => 33
+        ]);
+        $product->save();
+
+
+        $product = new \App\Product([
+            'imagePath' => 'https://images-na.ssl-images-amazon.com/images/I/51jPaZKybLL._SS500.jpg',
+            'title' => 'Bobby Fuller Died for Your Sins',
+            'description' => '  --Chuck Prophet',
+            'price' => 10,
+            'instock' => 332
+        ]);
+        $product->save();
+
+
+        $product = new \App\Product([
+            'imagePath' => 'https://images-na.ssl-images-amazon.com/images/I/51jPaZKybLL._SS500.jpg',
+            'title' => 'A/B',
+            'description' => '  --Kaleo',
+            'price' => 10,
+            'instock' => 332
+        ]);
+        $product->save();
+        $product = new \App\Product([
+            'imagePath' => 'https://images-na.ssl-images-amazon.com/images/I/61LBuWVjMYL._SS500.jpg',
+            'title' => 'Bobby Fuller Died for Your Sins',
+            'description' => '  --Kaleo',
+            'price' => 10,
+            'instock' => 332
+        ]);
+        $product->save();
+        $product = new \App\Product([
+            'imagePath' => 'https://images-na.ssl-images-amazon.com/images/I/61LBuWVjMYL._SS500.jpg',
+            'title' => 'Bobby Fuller Died for Your Sins',
+            'description' => '  --Chuck Prophet',
+            'price' => 10,
+            'instock' => 332
+        ]);
+        $product->save();
 
 
     }

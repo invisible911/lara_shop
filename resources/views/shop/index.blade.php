@@ -36,3 +36,9 @@
         </div>
     @endforeach
 @endsection
+
+@section('pages_link')
+    <div class="row">
+        {{ $products->links() }}
+    </div>
+@endsection

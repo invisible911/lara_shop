@@ -19,9 +19,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/Product', 'ProductsController@index');
+Route::get('/user/profile', 'HomeController@user_profile');
 
-Route::get('/addToCart/{id}','ProductsController@addtocart');
+Route::get('/products', 'ProductsController@index');
 
+Route::get('/cart', 'CartsController@index');
 
-Route::get('/Cart','CartsController@showcart');
+Route::get('/addtocart/{id}','ProductsController@addToCart');
+
+Route::get('/cart','CartsController@showCart');
