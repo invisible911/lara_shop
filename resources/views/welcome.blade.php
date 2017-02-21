@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                   <a href="/products"> Laravel shop </a>
                 </div>
 
                 <div class="links">

@@ -21,21 +21,37 @@
                         <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>
                     </a>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> User Management <span
-                                class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        @if(Auth::check())
-                            <li><a href="'user.profile'">User Profile</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="'user.logout'">Logout</a></li>
-                        @else
-                            <li><a href="user.signup'">Signup</a></li>
-                            <li><a href="'user.signin'">Signin</a></li>
-                        @endif
-                    </ul>
-                </li>
+                @if(Auth::check())
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> {{ Auth::user()->name }}<span
+                                    class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                                <li><a href="'/user/profile'">User Profile</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                </li>
+                        </ul>
+                @else
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i>Your account<span
+                                    class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="register">Signup</a></li>
+                            <li><a href="login">Signin</a></li>
+                        </ul>
+                @endif
+                    
+                    </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
