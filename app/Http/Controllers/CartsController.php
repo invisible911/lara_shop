@@ -20,24 +20,38 @@ class CartsController extends Controller
      */
     public function showCart(Request $request)
     {
+        
+        $session_id = Session::getId();
+
         if (Auth::check())
         {
             $user_id = Auth::user()->id;
-
+            
             $cart = Cart::firstOrCreate(compact("user_id"));
-
-            dd($cart);
+            
         }
         else{
+
+            $session_cart = Session::get('cart',null);
+            
             // for user not signed in, assign a cart associated with session id
+            if($session_cart === null)
+                
+                $cart = Cart::firstOrCreate(compact("session_id"));
+            else
 
-            $session_id = Session::getId();
-
-            $cart = Cart::firstOrCreate(compact("session_id"));
-
-            dd($cart);
+                $cart->save();
 
         }
+
+        $products = $cart->product;
+            
+        //dd($products);
+
+        Session::put('cart',$cart);
+
+        return view('shop.shoping_cart',compact("products"));
+
     }
 
     /**
@@ -115,4 +129,6 @@ class CartsController extends Controller
     {
         //
     }
+
+
 }

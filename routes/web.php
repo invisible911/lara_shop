@@ -34,11 +34,9 @@ Route::get('/test',function (){
 
 	$cart = App\Cart::first();
 
-	$product_ids = $cart->cart_product();
+	$product = $cart->product;
 
-	$cart_product =App\Cart::with('cart_product.product')->get()->first();
-
-	dd($cart_product);
+	dd($product);
 
 	
 });

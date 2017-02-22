@@ -8,6 +8,7 @@ class Order extends Model
 {
     public function product(){
 
-    	return $this->hasMany(OrderProduct::class,'cart_id','id');
+    	return $this->belongsToMany('App\Product','order_products','order_id','product_id');
+    
     }
 }

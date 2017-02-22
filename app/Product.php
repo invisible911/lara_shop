@@ -10,9 +10,13 @@ class Product extends Model
 
 
 
-    public function cart_product()
+    public function cart()
     {
-        return $this->belongsToMany("App\cart_product","cart_product_pivot");
+        return $this->belongsToMany('App\Cart','cart_products','product_id','cart_id');
     }
 
+    public function order()
+    {
+        return $this->belongsToMany('App\Order','order_products','product_id','order_id');
+    }
 }

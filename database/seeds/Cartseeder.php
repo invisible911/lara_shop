@@ -17,6 +17,13 @@ class Cartseeder extends Seeder
           ]);
 
         $cart->save();
+        
+        $cart = new App\Cart ([
+          'id' => 2 ,
+          'user_id' => 1
+          ]);
+
+        $cart->save();
 
 
         $cart_products = new App\CartProduct ([
@@ -34,6 +41,12 @@ class Cartseeder extends Seeder
 
         $cart_products->save();
 
+        $cart_products = new App\CartProduct ([
+          'cart_id' => 2 ,
+          'product_id' => 3
+          ]);
+
+        $cart_products->save();
 
     }
 }

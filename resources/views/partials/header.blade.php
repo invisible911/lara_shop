@@ -16,7 +16,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="cart">
+                    <a href="/cart">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping Cart
                         <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>
                     </a>

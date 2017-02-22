@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+Use Session;
+Use Auth;
+Use App\Cart;
 class LoginController extends Controller
 {
     /*
@@ -35,5 +37,31 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
+    }
+
+    protected function authenticated( $request, $user)
+    {
+
+        $session_id = Session::getId();
+
+        $user_id = Auth::user()->id;
+
+        $cart = Cart::firstOrCreate(compact("user_id"));
+
+        $session_cart = Session::get('cart',null);
+        
+
+        if($session_cart === null or empty($session_cart->product)) {
+
+            }
+        else{
+
+                $cart->product->merge($session_cart->product);
+
+                $cart->save();
+
+        }
+
+        Session::put('cart',$cart);
     }
 }
