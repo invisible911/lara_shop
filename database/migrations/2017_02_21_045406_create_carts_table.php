@@ -20,13 +20,7 @@ class CreateCartsTable extends Migration
             $table->string('session_id')->default('');
         });
 
-        Schema::create('carts_products', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
-            $table->integer('cart_id');
-            $table->integer('product_id');
-            $table->boolean('is_deleted');
-        });
+        
     }
 
     /**
@@ -37,6 +31,6 @@ class CreateCartsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('carts');
-        Schema::dropIfExists('carts_products');
+        
     }
 }

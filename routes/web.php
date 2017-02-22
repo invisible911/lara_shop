@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/user/profile', 'HomeController@user_profile');
 
@@ -28,3 +28,17 @@ Route::get('/cart', 'CartsController@index');
 Route::get('/addtocart/{id}','ProductsController@addToCart');
 
 Route::get('/cart','CartsController@showCart');
+
+
+Route::get('/test',function (){
+
+	$cart = App\Cart::first();
+
+	$product_ids = $cart->cart_product();
+
+	$cart_product =App\Cart::with('cart_product.product')->get()->first();
+
+	dd($cart_product);
+
+	
+});

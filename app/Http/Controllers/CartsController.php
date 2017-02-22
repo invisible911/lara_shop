@@ -29,6 +29,7 @@ class CartsController extends Controller
             dd($cart);
         }
         else{
+            // for user not signed in, assign a cart associated with session id
 
             $session_id = Session::getId();
 
