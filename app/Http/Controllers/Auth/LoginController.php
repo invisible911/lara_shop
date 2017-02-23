@@ -42,26 +42,30 @@ class LoginController extends Controller
     protected function authenticated( $request, $user)
     {
 
-        $session_id = Session::getId();
+        $cart_session_id = Session::get('cart_session_id','default');
 
         $user_id = Auth::user()->id;
 
         $cart = Cart::firstOrCreate(compact("user_id"));
 
-        $session_cart = Session::get('cart',null);
-        
+        $session_cart = Cart::firstOrCreate(['session_id'=>$cart_session_id]);
 
-        if(is_null($session_cart) or empty($session_cart->product)) {
-
-            }
-        else{
-
-                $cart->product->merge($session_cart->product);
-
-                $cart->save();
+        if(is_null($session_cart) or empty($session_cart->product))  
+        {
 
         }
 
-        Session::put('cart',$cart);
+        else
+            
+        {
+ 
+            foreach($session_cart->product as $product)
+    
+                $cart->addProduct($product);
+
+            $cart->save();
+
+        }
+
     }
 }

@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use Session;
+use Auth;
+Use App\Cart;
+
 class RegisterController extends Controller
 {
     /*
@@ -56,16 +60,54 @@ class RegisterController extends Controller
 
     /**
      * Create a new user instance after a valid registration.
-     *
+     *  also create a cart with products added before register
      * @param  array  $data
      * @return User
      */
     protected function create(array $data)
     {
-        return User::create([
+
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        $user->id;
+
+        $this->authenticated($user);
+
+        return $user;
+
+    }
+
+    protected function authenticated($user)
+    {
+
+        $cart_session_id = Session::get('cart_session_id','default');
+
+        $user_id = $user->id;
+
+        $cart = Cart::firstOrCreate(compact("user_id"));
+
+        $session_cart = Cart::firstOrCreate(['session_id'=>$cart_session_id]);
+
+        if(is_null($session_cart) or empty($session_cart->product))  
+        {
+
+        }
+
+        else
+            
+        {
+ 
+            foreach($session_cart->product as $product)
+    
+                $cart->addProduct($product);
+
+            $cart->save();
+
+        }
+
     }
 }

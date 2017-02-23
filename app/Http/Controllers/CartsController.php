@@ -17,7 +17,7 @@ class CartsController extends Controller
 {
     protected function getCart()
     {
-        $session_id = Session::getId();
+        
 
         if (Auth::check())
         {
@@ -28,16 +28,25 @@ class CartsController extends Controller
         }
         else{
 
-            $session_cart = Session::get('cart',null);
-            
-            // for user not signed in, assign a cart associated with session id
-            if(is_null($session_cart))
+            if (Session::has('cart_session_id') == false)
 
-                $cart = Cart::firstOrCreate(compact("session_id"));
+            {
+                $cart_session_id = md5(time() . Session::getId() . 'shop');
 
-            else
-                $cart = $session_cart;
-                $cart->save();
+                Session::put('cart_session_id',$cart_session_id);
+
+            }
+
+            else{
+
+                $cart_session_id = Session::get('cart_session_id');
+
+                Session::put('cart_session_id',$cart_session_id);
+
+            }
+
+            $cart = Cart::firstOrCreate(['session_id'=>$cart_session_id]);
+
 
         }
 
@@ -54,8 +63,9 @@ class CartsController extends Controller
         $cart = $this->getCart();
 
         $products = $cart->product;
+
+        //dd($cart);
             
-        Session::put('cart',$cart);
 
         return view('shop.shoping_cart',compact('products'));
 

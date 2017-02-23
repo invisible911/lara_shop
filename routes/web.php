@@ -33,6 +33,15 @@ Route::get('/test',function (){
 
 	$product = $cart->product;
 
+   
+    
+    $r = Request::session()->regenerate();
+
+    //dd(Request::session()->getId());
+
+    dd(Request::session()->get('cc',null));
+
+
 	dd($product);
 
 	
