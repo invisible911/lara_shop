@@ -26,7 +26,7 @@
                             <div class="clearfix">
                                 <div class="pull-left price">${{ $product->price }}</div><br>
                                 <div class="pull-left price">{{ $product->instock }} avaliable</div>
-                                <a href="/addToCart/{{$product->id}}"
+                                <a href="/addtocart/{{$product->id}}"
                                    class="btn btn-success pull-right" role="button">Add to Cart</a>
                             </div>
                         </div>

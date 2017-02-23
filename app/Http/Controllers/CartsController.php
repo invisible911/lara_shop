@@ -69,9 +69,9 @@ class CartsController extends Controller
         
         $cart->addProduct($product);
         
-        dd($cart->product->toArray());
-        
-        return view()->home();
+        //dd($cart->product->toArray());
+
+        return back();
     }
     /**
      * Display a listing of the resource.
