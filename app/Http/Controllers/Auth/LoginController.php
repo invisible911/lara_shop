@@ -51,7 +51,7 @@ class LoginController extends Controller
         $session_cart = Session::get('cart',null);
         
 
-        if($session_cart === null or empty($session_cart->product)) {
+        if(is_null($session_cart) or empty($session_cart->product)) {
 
             }
         else{

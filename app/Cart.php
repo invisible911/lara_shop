@@ -15,7 +15,7 @@ class Cart extends Model
 
     public function product()
     {
-        return $this->belongsToMany('App\Product','cart_products','cart_id','product_id')->withPivot('quantity');
+        return $this->belongsToMany('App\Product','cart_products','cart_id','product_id')->withPivot('quantity')->withTimestamps();;
     }
 
     /*
@@ -26,6 +26,25 @@ class Cart extends Model
     	return $this->belongsTo("App\User");
     }
 
+
+    public function addProduct($product)
+    {
+        
+        $cart = $product->cart()->where('cart_id',$this->id)->first();
+
+        if(is_null($cart))
+        {
+            $this->product()->save($product);
+        }
+        else
+        {
+            $cart_product = $this->product()->where('product_id',$product->id)->first();
+            $quantity = $cart_product->pivot->quantity;
+            $quantity++;
+            $cart_product->pivot->update(compact('quantity'));
+        }
+
+    }
 
     
 }

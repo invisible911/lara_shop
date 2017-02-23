@@ -10,17 +10,13 @@ use Session;
 
 use App\Cart;
 
+use App\Product;
+
 
 class CartsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function showCart(Request $request)
+    protected function getCart()
     {
-        
         $session_id = Session::getId();
 
         if (Auth::check())
@@ -35,25 +31,48 @@ class CartsController extends Controller
             $session_cart = Session::get('cart',null);
             
             // for user not signed in, assign a cart associated with session id
-            if($session_cart === null)
-                
-                $cart = Cart::firstOrCreate(compact("session_id"));
-            else
+            if(is_null($session_cart))
 
+                $cart = Cart::firstOrCreate(compact("session_id"));
+
+            else
+                $cart = $session_cart;
                 $cart->save();
 
         }
 
+        return $cart;
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showCart()
+    {
+        
+        $cart = $this->getCart();
+
         $products = $cart->product;
             
-        //dd($products);
-
         Session::put('cart',$cart);
 
-        return view('shop.shoping_cart',compact("products"));
+        return view('shop.shoping_cart',compact('products'));
 
     }
 
+    public function addToCart($product_id)
+    {
+        $cart = $this->getCart();
+
+        $product = Product::find($product_id);
+        
+        $cart->addProduct($product);
+        
+        dd($cart->product->toArray());
+        
+        return view()->home();
+    }
     /**
      * Display a listing of the resource.
      *

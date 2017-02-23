@@ -23,12 +23,9 @@ Route::get('/user/profile', 'HomeController@user_profile');
 
 Route::get('/products', 'ProductsController@index');
 
-Route::get('/cart', 'CartsController@index');
-
-Route::get('/addtocart/{id}','ProductsController@addToCart');
-
 Route::get('/cart','CartsController@showCart');
 
+Route::get('/addtocart/{product_id}','CartsController@addToCart');
 
 Route::get('/test',function (){
 
