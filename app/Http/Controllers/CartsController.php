@@ -52,6 +52,7 @@ class CartsController extends Controller
 
         return $cart;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -62,10 +63,7 @@ class CartsController extends Controller
         
         $cart = $this->getCart();
 
-        $products = $cart->product;
-
-        //dd($cart);
-            
+        $products = $cart->product->where('pivot.deleted_at',null);            
 
         return view('shop.shoping_cart',compact('products'));
 
@@ -78,86 +76,33 @@ class CartsController extends Controller
         $product = Product::find($product_id);
         
         $cart->addProduct($product);
-        
-        //dd($cart->product->toArray());
 
-        return back();
+        return redirect()->back();
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function removeFromCart($product_id)
     {
-        //
+
+        $cart = $this->getCart();
+
+        $product = Product::find($product_id);
+
+        $cart->removeProduct($product);
+
+        return redirect()->back();
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function reduce1FromCart($product_id)
     {
-        //
-    }
+        $cart = $this->getCart();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $product = Product::find($product_id);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $cart->reduce1Product($product);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return redirect()->back();
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
+    
 
 }

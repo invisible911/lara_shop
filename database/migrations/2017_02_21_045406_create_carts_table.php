@@ -16,14 +16,17 @@ class CreateCartsTable extends Migration
         Schema::create('carts', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->softDeletes();
             $table->integer('user_id')->default(0);
             $table->string('session_id')->default('');
+            
         });
 
 
         Schema::create('cart_products', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->integer('cart_id')->unsigned()->index();
             $table->foreign('cart_id')->references('id')->on('carts')->onDelete('cascade');

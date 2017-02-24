@@ -25,7 +25,12 @@ Route::get('/products', 'ProductsController@index');
 
 Route::get('/cart','CartsController@showCart');
 
-Route::get('/addtocart/{product_id}','CartsController@addToCart');
+Route::post('/addtocart/{product_id}','CartsController@addToCart');
+
+Route::post('/removefromcart/{product_id}','CartsController@removeFromCart');
+
+Route::post('/reduce1fromcart/{product_id}','CartsController@reduce1FromCart');
+
 
 Route::get('/test',function (){
 

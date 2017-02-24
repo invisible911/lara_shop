@@ -26,8 +26,11 @@
                             <div class="clearfix">
                                 <div class="pull-left price">${{ $product->price }}</div><br>
                                 <div class="pull-left price">{{ $product->instock }} avaliable</div>
-                                <a href="/addtocart/{{$product->id}}"
-                                   class="btn btn-success pull-right" role="button">Add to Cart</a>
+                                <form method="POST" action="/addtocart/{{$product->id}}">
+                                    {{csrf_field()}}
+                                    <button role="button" type="submit" class = 'btn btn-primary pull-right' >Add to Cart </button>
+                                    }
+                                </form>
                             </div>
                         </div>
                     </div>

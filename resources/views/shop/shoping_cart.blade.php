@@ -13,44 +13,56 @@
         </div>
         
     @else
-        @php
-        $total_price = 0;
-        @endphp
-        <div class="row">
-            <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-                <ul class="list-group">
-                    @foreach($products as $product)
-                            <li class="list-group-item">
-                                @php
-                                    $total_price = $total_price + $product->pivot->quantity*$product->price 
-                                @endphp
-                                <span class="badge">{{ $product->pivot->quantity }}</span>
-                                <strong>{{ $product->title }}</strong>
-                                <span class="label label-success">{{ $product->price }}</span>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                    <h3 class="panel-title">Shopping Cart</h3>
+            </div>
+            @php
+            $total_price = 0;
+            @endphp
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+                        <ul class="list-group">
+                            @foreach($products as $product)
+                                    <li class="list-group-item">
+                                        @php
+                                            $total_price = $total_price + $product->pivot->quantity*$product->price 
+                                        @endphp
+                                        <span class="badge">{{ $product->pivot->quantity }}</span>
+                                        <strong>{{ $product->title }}</strong>
+                                        <span class="label label-success">${{ $product->price }}</span>
 
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary btn-xs dropdown-toogle" data-toggle="dropdown">Edit <span class="caret"></span></button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="reduce 1">reduce by 1</a></li>
-                                        <li><a href="add 1">reduce by 1</a></li>
-                                        <li><a href="remove all">remove</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                    @endforeach
-                </ul>
+                                        <div class="btn-toolbar" role="toolbar" >
+                                            <div class="btn-group pull-right" role="group" aria-label="..." >
+                                                <form method="POST" >
+                                                    {{csrf_field()}}
+                                                    <button role="button" type="submit" formAction="/addtocart/{{$product->id}}" class = 'btn btn-success btn-xs ' >add 1</button>
+                                                    <button role="button" type="submit" formAction="/reduce1fromcart/{{$product->id}}" class = 'btn btn-warning btn-xs ' >reduce 1</button>
+                                                    <button role="button" type="submit" formAction="/removefromcart/{{$product->id}}" class = 'btn btn-danger btn-xs ' >remove it</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+                    <strong>Total: ${{$total_price }}</strong>
+                </div>
             </div>
         </div>
-        <div class="row">
 
-            <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-                <strong>Total: {{$total_price }}</strong>
-            </div>
-        </div>
-        <hr>
         <div class="row">
             <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+                <div class="btn-toolbar" role="toolbar" >
+                <a href="/home" type="button" class="btn btn-success">Back</a>
                 <a href="/checout" type="button" class="btn btn-success">Checkout</a>
+                </div>
             </div>
         </div>
     @endif

@@ -3,9 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class CartProduct extends Model
+class CartProduct extends Pivot 
 {
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
+
+    protected $table = 'cart_products';
+    
     protected $fillable = [
         'cart_id',
         'product_id', 
@@ -20,7 +28,7 @@ class CartProduct extends Model
 
     public function product()
     {
-        return $this->belongsToMany('App\Product',"cart_product_pivot");
+        return $this->belongsTo('App\Product');
     }
 
 

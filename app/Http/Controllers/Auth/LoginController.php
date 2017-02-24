@@ -50,7 +50,7 @@ class LoginController extends Controller
 
         $session_cart = Cart::firstOrCreate(['session_id'=>$cart_session_id]);
 
-        if(is_null($session_cart) or empty($session_cart->product))  
+        if(empty($session_cart->product))  
         {
 
         }
@@ -66,6 +66,8 @@ class LoginController extends Controller
             $cart->save();
 
         }
+
+        $session_cart->delete();
 
     }
 }
