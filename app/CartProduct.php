@@ -17,8 +17,7 @@ class CartProduct extends Pivot
     protected $fillable = [
         'cart_id',
         'product_id', 
-        'quantity',
-        'is_deleted'
+        'quantity'
     ];
 
     public function cart()

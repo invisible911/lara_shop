@@ -11,12 +11,18 @@ class Cartseeder extends Seeder
      */
     public function run()
     {
+
+
         $cart = new App\Cart ([
  			    'id' => 1 ,
         	'user_id' => 2 
           ]);
 
         $cart->save();
+
+        $cart->product()->sync([1,2]);
+
+        
         
         $cart = new App\Cart ([
           'id' => 2 ,
@@ -24,29 +30,12 @@ class Cartseeder extends Seeder
           ]);
 
         $cart->save();
+        
+        $cart->product()->sync([1,2,3]);
+        
 
 
-        $cart_products = new App\CartProduct ([
- 			    'cart_id' => 1 ,
-        	'product_id' => 1 
-          ]);
-
-        $cart_products->save();
-
-
-        $cart_products = new App\CartProduct ([
- 			    'cart_id' => 1 ,
-        	'product_id' => 2
-          ]);
-
-        $cart_products->save();
-
-        $cart_products = new App\CartProduct ([
-          'cart_id' => 2 ,
-          'product_id' => 3
-          ]);
-
-        $cart_products->save();
+      
 
     }
 }

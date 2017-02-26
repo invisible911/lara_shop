@@ -53,6 +53,9 @@
 
                 <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
                     <strong>Total: ${{$total_price }}</strong>
+                    @php
+                        Session::put('total_price',$total_price);
+                    @endphp
                 </div>
             </div>
         </div>
@@ -61,7 +64,7 @@
             <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
                 <div class="btn-toolbar" role="toolbar" >
                 <a href="/home" type="button" class="btn btn-success">Back</a>
-                <a href="/checout" type="button" class="btn btn-success">Checkout</a>
+                <a href="/checkout" type="button" class="btn btn-success">Checkout</a>
                 </div>
             </div>
         </div>

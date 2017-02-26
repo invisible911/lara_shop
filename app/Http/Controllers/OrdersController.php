@@ -7,78 +7,39 @@ use Illuminate\Http\Request;
 class OrdersController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display the checkout page
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return view('shop.checkout');
     }
 
     /**
-     * Show the form for creating a new resource.
+     * preceed the check out
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+
+
+    public function checkout($request)
+    {   
+        // forme control
+            //1 check the length of credit number
+            //2 check month .year
+            //
+
+        // dump to error
+
+        //check if avaliable and if not return error.
+
+
+        // write results to db
+           //1.add order 
+           //2.add order product
+           // 3.change the quantity of product.
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    
 }

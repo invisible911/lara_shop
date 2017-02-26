@@ -11,6 +11,7 @@ class Productseeder extends Seeder
      */
     public function run()
     {
+
         $product = new \App\Product([
             'imagePath' => 'http://ecx.images-amazon.com/images/I/51ZU%2BCvkTyL.jpg',
             'title' => 'Harry Potter',

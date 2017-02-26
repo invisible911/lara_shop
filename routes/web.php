@@ -31,6 +31,14 @@ Route::post('/removefromcart/{product_id}','CartsController@removeFromCart');
 
 Route::post('/reduce1fromcart/{product_id}','CartsController@reduce1FromCart');
 
+Route::get('/checkout','OrdersController@index');
+
+Route::post('/checkout','OrdersController@checkout');
+
+Route::post('/profile','OrdersController@checkout'); //get the profile of users, and orders.
+
+Route::post('/products','OrdersController@checkout'); //input new products and fill in instocks. adding a layer of admin
+
 
 Route::get('/test',function (){
 

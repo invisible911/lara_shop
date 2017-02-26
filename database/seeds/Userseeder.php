@@ -11,6 +11,9 @@ class Userseeder extends Seeder
      */
     public function run()
     {
+        
+       //DB::table('users')->truncate();
+
         $user = new \App\User([
         	'name'  => 'admin1',
         	'email' => 'admin1@shop.com',
