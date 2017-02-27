@@ -41,8 +41,6 @@ class CartsController extends Controller
 
                 $cart_session_id = Session::get('cart_session_id');
 
-                Session::put('cart_session_id',$cart_session_id);
-
             }
 
             $cart = Cart::firstOrCreate(['session_id'=>$cart_session_id]);
@@ -63,7 +61,7 @@ class CartsController extends Controller
         
         $cart = $this->getCart();
 
-        $products = $cart->product->where('pivot.deleted_at',null);            
+        $products = $cart->product->where('pivot.deleted_at',null);    
 
         return view('shop.shoping_cart',compact('products'));
 

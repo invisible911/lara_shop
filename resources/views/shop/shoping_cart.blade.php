@@ -55,6 +55,7 @@
                     <strong>Total: ${{$total_price }}</strong>
                     @php
                         Session::put('total_price',$total_price);
+                        Session::put('order_product_list',$products);
                     @endphp
                 </div>
             </div>
@@ -64,7 +65,9 @@
             <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
                 <div class="btn-toolbar" role="toolbar" >
                 <a href="/home" type="button" class="btn btn-success">Back</a>
-                <a href="/checkout" type="button" class="btn btn-success">Checkout</a>
+                @if($total_price>0)
+                    <a href="/checkout" type="button" class="btn btn-success">Checkout</a>
+                @endif
                 </div>
             </div>
         </div>

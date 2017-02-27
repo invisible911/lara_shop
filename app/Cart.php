@@ -46,7 +46,7 @@ class Cart extends Model
     public function addProduct($product)
     {
         
-        $cart = $product->cart()->where('cart_id',$this->id)->first();
+        $cart = $product->cart()->where('cart_id',$this->id)->wherePivot('deleted_at',null)->first();
 
         if(is_null($cart))
         {
@@ -54,13 +54,12 @@ class Cart extends Model
         }
         else
         {
-            $cart_product = $this->product()->where('product_id',$product->id)->first();
 
-            $quantity = $cart_product->pivot->quantity;
+            $quantity = $cart->pivot->quantity;
 
             $quantity++;
 
-            $cart_product->pivot->update(compact('quantity'));
+            $cart->pivot->update(compact('quantity'));
         }
 
     }
@@ -68,31 +67,31 @@ class Cart extends Model
     public function removeProduct($product)
     {
 
-         $cart_product = $this->product()->where('product_id',$product->id)->first();
+         $cart = $product->cart()->where('cart_id',$this->id)->wherePivot('deleted_at',null)->first();
 
-         if (! is_null($cart_product))
+         if (! is_null($cart))
 
-            $cart_product->pivot->delete();
+            $cart->pivot->delete();
     }
 
     public function reduce1Product($product)
     {
 
-        $cart_product = $this->product()->where('product_id',$product->id)->first();
+        $cart = $product->cart()->where('cart_id',$this->id)->wherePivot('deleted_at',null)->first();
 
-        if (! is_null($cart_product))
+        if (! is_null($cart))
         {
-            $quantity = $cart_product->pivot->quantity;
+            $quantity = $cart->pivot->quantity;
 
             if ($quantity == 1)
             {
-                $cart_product->pivot->delete();
+                $cart->pivot->delete();
             }
             else
             {
                 $quantity--;
             
-                $cart_product->pivot->update(compact('quantity'));
+                $cart->pivot->update(compact('quantity'));
             }
         }
 
