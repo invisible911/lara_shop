@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use Session;
 
+use Illuminate\Support\Facades\Cache;
+
+use App\Jobs\OrderTransaction;
+
 class OrdersController extends Controller
 {
     
@@ -48,8 +52,6 @@ class OrdersController extends Controller
     public function checkout()
     {   
 
-        
-        
 
         $this->validate(request(), [
 
@@ -68,78 +70,47 @@ class OrdersController extends Controller
         ]);
 
 
-        $total_price = request()-> total_price;
+        $payment_details = request()->toArray();
 
         $products = Session::get('order_product_list');
 
-        $is_success = true;
+        $payment_details['products'] = $products;
 
-        $is_success_payment = $this->credit_deduct(request()->toArray());
+        $key = md5(time() . Session::getId() . 'order_id');
+
+        $payment_details['key_is_success'] = $key.'_is_success';
        
-        $errors = collect();
+        $payment_details['key_errors'] = $key.'_errors'; 
 
+        $job = (new OrderTransaction($payment_details));
         
+        $this->dispatch($job);
 
-        if ($is_success_payment)
-        {
-            //check if avaliable and if not return erro
-            foreach($products as $product)
-            {
-                if($product->pivot->quantity > $product->instock)
-                {
-                    
-                    $is_success = false;
+        //set_time_limit(60);
 
-                    $error_message = 'Item: '.$product->name.' is not avaliable.'. 'instock number:'.$product->instock.' you oder quantity: '. $product->pivot->quantity;
+        for ($i = 0; $i < 29; ++$i) {
 
-                    $errors->push($error_message);
+            $is_success = Cache::get($payment_details['key_is_success'],null);
 
-                }
+            $errors = Cache::get($payment_details['key_errors'],null);
 
+            if (!is_null($is_success) and !is_null($errors)){
+
+                break;
             }
 
-            //1.add order 
-           //2.add order product
-           // 3.change the quantity of product.
-
-        }
-        else
-        {
-            $error_message = 'Transaction faild. please verify your credit card info.';
-
-            $errors->push($error_message);
-
-            $is_success = false;
-
+            sleep(1);
         }
 
+        $name = $payment_details['name'];
 
-        return view('shop.check_result',compact('is_success','errors','products'));
+        $address = $payment_details['address'];
+
+        return view('shop.checkout_result',compact('is_success','errors','products','name','address'));
 
            
     }
 
-    /**
-     *  persudo function for  communiting card organization and process the transaction. 
-     *
-     * @return true or false 
-     */
-    public function credit_deduct(array $payment_info)
-    {
-        $card_name = $payment_info['card_name'];
-
-        $card_number = $payment_info['card_number'];
-
-        $card_expiry_date = $payment_info['card_expiry_date'];
-
-        $card_cvc = $payment_info['card_cvc'];
-
-        $total_price = $payment_info['total_price'];
-
-        // comminutes and get the result returned
-
-        return true;
-    }
-
+   
     
 }
