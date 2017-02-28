@@ -22,14 +22,14 @@ a small shop powered by Laravel framework.
 
 ## Implementation features:
 
-	* keeping products added-in after sign up and log in.
-	* 'database' carts and  soft delete items in a cart.
-	* custom pivot table.
-	* pagination.
-	* use a third-party package to do the credit card validation.
-	* using a queue job to process the checkout.
-	* using cache to hold checkout results.
-	* updating products in cart after successful checkout.
-	* updating products instock information after checkout.
+* keeping products added-in after sign up and log in.
+* 'database' carts and  soft delete items in a cart.
+* custom pivot table.
+* pagination.
+* use a third-party package to do the credit card validation.
+* using a queue job to process the checkout.
+* using cache to hold checkout results.
+* updating products in cart after successful checkout.
+* updating products instock information after checkout.
 	
 
