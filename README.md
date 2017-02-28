@@ -22,6 +22,7 @@ a small shop powered by Laravel framework.
 
 ## Implementation features:
 
+* using midware control
 * keeping added products in cart after sign up and log in.
 * 'database' carts and apply soft delete product items in a cart.
 * custom pivot table.

@@ -40,6 +40,22 @@ Route::post('/profile','OrdersController@checkout'); //get the profile of users,
 Route::post('/products','OrdersController@checkout'); //input new products and fill in instocks. adding a layer of admin
 
 
+//admin
+
+
+Route::get('/edit_product','ProductsController@index_edit');
+
+Route::post('/edit_product/$product_id','ProductsController@edit_product');
+
+Route::get('/add_new_product','ProductsController@index_add');
+
+Route::post('/add_new_product','ProductsController@add_new_product');
+
+Route::get('/orders','OrdersController@orders_all');
+
+
+
+
 Route::get('/test',function (){
 
 	$cart = App\Cart::first();

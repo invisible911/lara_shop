@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\User;
+use App\Order;
 use Auth;
+
+
 
 class HomeController extends Controller
 {
@@ -34,7 +37,10 @@ class HomeController extends Controller
 
     public function user_profile()
     {
-        dd($user = Auth::user());
-        return view('shop.index',compact("products"));
+        $user = Auth::user();
+
+        $orders = Order::where('user_id',$user->id)->with('product')->get();
+
+        return view('user.profile',compact("orders"));
     }
 }
