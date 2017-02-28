@@ -3,7 +3,7 @@ a small shop powered by Laravel framework.
 
 ## install
 	1. composer update
-	2. config database
+	2. '''config database
 	3. php artisan migrate:refresh
 	4. php artisan db:seed
 	
@@ -22,13 +22,14 @@ a small shop powered by Laravel framework.
 
 ## Implementation features:
 
-	keeping products added-in after sign up and log in.
-	'database' carts and  soft delete items in a cart.
-	custom pivot table.
-	pagination.
-	use a third-party package to do the credit card validation.
-	using a queue job to process the checkout.
-	updating products in cart after successful checkout.
-	updating products instock information after checkout.
+	* keeping products added-in after sign up and log in.
+	* 'database' carts and  soft delete items in a cart.
+	* custom pivot table.
+	* pagination.
+	* use a third-party package to do the credit card validation.
+	* using a queue job to process the checkout.
+	* using cache to hold checkout results.
+	* updating products in cart after successful checkout.
+	* updating products instock information after checkout.
 	
 
