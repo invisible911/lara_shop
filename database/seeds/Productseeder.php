@@ -41,7 +41,7 @@ class Productseeder extends Seeder
 
 
         $product = new \App\Product([
-            'imagePath' => 'https://images-na.ssl-images-amazon.com/images/I/51jPaZKybLL._SS500.jpg',
+            'imagePath' => 'https://images-na.ssl-images-amazon.com/images/I/61LBuWVjMYL._SS500.jpg',
             'title' => 'Bobby Fuller Died for Your Sins',
             'description' => '  --Chuck Prophet',
             'price' => 10,
@@ -53,27 +53,49 @@ class Productseeder extends Seeder
         $product = new \App\Product([
             'imagePath' => 'https://images-na.ssl-images-amazon.com/images/I/51jPaZKybLL._SS500.jpg',
             'title' => 'A/B',
-            'description' => '  --Kaleo',
+            'description' => '  --xxx',
             'price' => 10,
+            'instock' => 332
+        ]);
+        $product->save();
+
+        $product = new \App\Product([
+            'imagePath' => 'https://images-na.ssl-images-amazon.com/images/G/01/kindle/store/2016/eink/paperwhite_desktop_tile.jpg',
+            'title' => 'Kindle Paperwhite',
+            'description' => 'Kindle Paperwhite E-reader - Black, 6" High-Resolution Display (300 ppi) with Built-in Light, Wi-Fi - Includes Special ',
+            'price' => 150,
             'instock' => 332
         ]);
         $product->save();
         $product = new \App\Product([
-            'imagePath' => 'https://images-na.ssl-images-amazon.com/images/I/61LBuWVjMYL._SS500.jpg',
-            'title' => 'Bobby Fuller Died for Your Sins',
-            'description' => '  --Kaleo',
+            'imagePath' => 'https://images-na.ssl-images-amazon.com/images/I/51GJFwZZU9L.jpg',
+            'title' => 'Lemonade',
+            'description' => '  --Beyonce',
             'price' => 10,
             'instock' => 332
         ]);
         $product->save();
+
         $product = new \App\Product([
-            'imagePath' => 'https://images-na.ssl-images-amazon.com/images/I/61LBuWVjMYL._SS500.jpg',
-            'title' => 'Bobby Fuller Died for Your Sins',
-            'description' => '  --Chuck Prophet',
-            'price' => 10,
+            'imagePath' => 'https://images-na.ssl-images-amazon.com/images/I/81MVp7I%2Bp8L._SX522_.jpg',
+            'title' => 'Divide Deluxe Version',
+            'description' => '  --Ed Sheeran',
+            'price' => 13,
             'instock' => 332
         ]);
         $product->save();
+
+        $product = new \App\Product([
+            'imagePath' => 'https://images-na.ssl-images-amazon.com/images/I/91JRPJhI1HL._SX522_.jpg',
+            'title' => 'Live From The Fox Oakland',
+            'description' => '  --Tedeschi Trucks Band',
+            'price' => 14,
+            'instock' => 332
+        ]);
+        $product->save();
+
+       
+
 
 
     }
