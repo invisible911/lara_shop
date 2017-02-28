@@ -18,12 +18,12 @@ a small shop powered by Laravel framework.
 ### Admin User
 	1. adding new products
 	2. viewing orders
-	3. managing products (adding and chaging instock status)
+	3. managing products (adding and updating instock status)
 
 ## Implementation features:
 
-* keeping products added-in after sign up and log in.
-* 'database' carts and  soft delete items in a cart.
+* keeping added products in cart after sign up and log in.
+* 'database' carts and apply soft delete product items in a cart.
 * custom pivot table.
 * pagination.
 * use a third-party package to do the credit card validation.
