@@ -21,7 +21,7 @@ class Cart extends Model
 
     public function product()
     {
-        return $this->belongsToMany('App\Product','cart_products','cart_id','product_id')->withPivot('quantity','deleted_at')->withTimestamps();;
+        return $this->belongsToMany('App\Product','cart_products','cart_id','product_id')->withPivot('quantity','deleted_at')->withTimestamps();
     }
 
 
@@ -97,5 +97,35 @@ class Cart extends Model
 
     }
 
+    public function order_remove_products($products)
+    {
+        foreach($products as $product)
+        {
+            $product_id = $product->id;
+
+            $order_id = $this->id;
+
+            $quantity = $product->pivot->quantity;
+
+            $in_cart_product = $this->product()->where('product_id',$product_id)->wherePivot('deleted_at',null)->first();
+
+            if(is_null($in_cart_product))
+
+                continue;
+
+            if ($quantity >= $in_cart_product->pivot->quantity )
+            {
+                $this->removeProduct($product);
+            }
+            else
+            {
+                $update_quantity = $quantity  - $in_cart_product->pivot->quantity;
+
+                $in_cart_product->pivot->update(compact('update_quantity'));
+            }
+            
+        }
+
+    }
     
 }

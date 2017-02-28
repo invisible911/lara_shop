@@ -12,6 +12,15 @@ use Illuminate\Support\Collection;
 
 use Illuminate\Support\Facades\Cache;
 
+use App\Order;
+
+use App\User;
+
+use App\Cart;
+
+use App\Product;
+
+use App\OrderProduct;
 
 class OrderTransaction implements ShouldQueue
 {
@@ -61,17 +70,14 @@ class OrderTransaction implements ShouldQueue
                     
                     $is_success = false;
 
-                    $error_message = 'Item: '.$product->name.' is not avaliable.'. 'instock number:'.$product->instock.' you oder quantity: '. $product->pivot->quantity;
+                    $error_message = 'Item: '.$product->title.' is not avaliable.'. 'instock number:'.$product->instock.' you oder quantity: '. $product->pivot->quantity;
 
                     $errors->push($error_message);
 
                 }
 
             }
-            //TODO 
-            //1.add order 
-           //2.add order product
-           // 3.change the quantity of product.
+
 
         }
         else
@@ -81,6 +87,40 @@ class OrderTransaction implements ShouldQueue
             $errors->push($error_message);
 
             $is_success = false;
+
+        }
+
+        if($is_success)
+        {   
+
+            //1.add order 
+           // 2.add order product
+            //3. update product in cart 
+           // 4.change the quantity of product.
+
+            $user_id = $payment_details['user_id'];
+
+            $name = $payment_details['name'];
+            
+            $address = $payment_details['address'];
+
+            $order = Order::create(compact('user_id','name','address'));
+
+            $order->put_orders($products);
+
+            $cart = User::find($user_id)->cart;
+
+            $cart->order_remove_products($products);
+
+            $this->update_products_after_order($products);
+
+            foreach($products as $product)
+            {
+                $instock = $product->instock - $product->pivot->quantity;
+
+                $update_product = Product::find($product->id)->update(compact('instock'));
+            }
+            
 
         }
 
@@ -114,4 +154,8 @@ class OrderTransaction implements ShouldQueue
         return true;
     }
 
+    protected function update_products_after_order($products)
+    {
+
+    }
 }

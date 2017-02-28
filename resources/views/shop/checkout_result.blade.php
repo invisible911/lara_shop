@@ -36,6 +36,13 @@
 			</div>
 	</div>
 @endif
+	<div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <div class="btn-toolbar" role="toolbar" >
+            <a href="/home" type="button" class="btn btn-success">Back</a>
+            </div>
+        </div>
+    </div>
 @endsection
 
 

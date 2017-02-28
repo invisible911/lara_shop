@@ -14,7 +14,8 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(6);
+        $products = Product::where('instock','>', 0)->paginate(6);
+
         return view('shop.index', compact("products"));
     }
 

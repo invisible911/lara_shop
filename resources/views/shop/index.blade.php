@@ -29,7 +29,7 @@
                                 <form method="POST" action="/addtocart/{{$product->id}}">
                                     {{csrf_field()}}
                                     <button role="button" type="submit" class = 'btn btn-primary pull-right' >Add to Cart </button>
-                                    }
+                                    
                                 </form>
                             </div>
                         </div>

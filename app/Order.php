@@ -6,9 +6,30 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    public function product(){
+    protected $fillable = [
+        'name',
+        'user_id',
+        'address'
+    ];
 
-    	return $this->belongsToMany('App\Product','order_products','order_id','product_id');
+    public function product()
+    {
+
+        return $this->belongsToMany('App\Product','order_products','order_id','product_id')->withPivot('quantity')->withTimestamps();
     
+    }
+
+    public function put_orders($products)
+    {
+        foreach($products as $product)
+        {
+            $product_id = $product->id;
+            $order_id = $this->id;
+            $quantity = $product->pivot->quantity;
+
+            $this->product()->save($product, compact('quantity'));
+
+        }
+        
     }
 }

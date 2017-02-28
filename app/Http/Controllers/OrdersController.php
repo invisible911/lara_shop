@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use Session;
 
+use Auth;
+
 use Illuminate\Support\Facades\Cache;
 
 use App\Jobs\OrderTransaction;
@@ -78,10 +80,15 @@ class OrdersController extends Controller
 
         $key = md5(time() . Session::getId() . 'order_id');
 
+        $user_id = Auth::user()->id;
+
+        $payment_details['user_id'] = $user_id;
+
         $payment_details['key_is_success'] = $key.'_is_success';
        
         $payment_details['key_errors'] = $key.'_errors'; 
 
+        //dd($payment_details);
         $job = (new OrderTransaction($payment_details));
         
         $this->dispatch($job);
