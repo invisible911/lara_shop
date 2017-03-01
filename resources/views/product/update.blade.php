@@ -27,6 +27,7 @@
                                    <div class="form-group pull-left">
                                          <div class="input-group input-group-sm">
                                           <label for="price">  price:</label>
+                                          <span >$</span>
                                           <input type="text" class="form-control" name="price" value = {{$product->price}}>
                                         </div>
                                     </div>

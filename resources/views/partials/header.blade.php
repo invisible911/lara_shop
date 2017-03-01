@@ -27,7 +27,11 @@
                            aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> {{ Auth::user()->name }}<span
                                     class="caret"></span></a>
                         <ul class="dropdown-menu">
-                                <li><a href="/user/profile">User Profile</a></li>
+                                @if(Auth::user()->isadmin)
+                                    <li><a href="/user/profile">Management</a></li>
+                                @else
+                                    <li><a href="/user/profile">User Profile</a></li>
+                                @endif
                                 <li role="separator" class="divider"></li>
                                 <li><a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

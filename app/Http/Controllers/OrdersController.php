@@ -8,6 +8,8 @@ use Session;
 
 use Auth;
 
+use App\Order;
+
 use Illuminate\Support\Facades\Cache;
 
 use App\Jobs\OrderTransaction;
@@ -114,8 +116,19 @@ class OrdersController extends Controller
         $address = $payment_details['address'];
 
         return view('shop.checkout_result',compact('is_success','errors','products','name','address'));
-
            
+    }
+
+    public function orders_all()
+    {
+        if (!Auth::user()->isadmin)
+        {
+            return redirect()->to('/home');
+        }
+
+        $orders = Order::with('product')->paginate(3);
+
+        return view('user.orders',compact("orders"));
     }
 
    

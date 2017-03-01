@@ -12,7 +12,6 @@ class ProductsController extends Controller
     
 
     public function __construct()
-
     {
 
         $this->middleware('auth',['except'=>'index']);
@@ -26,7 +25,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::where('instock','>', 0)->paginate(6);
+        $products = Product::where('instock','>', 0)->orderBy('created_at','desc')->paginate(6);
 
         return view('shop.index', compact("products"));
     }
@@ -40,7 +39,7 @@ class ProductsController extends Controller
             return redirect()->to('/home');
         }
 
-        $products = Product::where('instock','>', 0)->orderBy('instock','asc')->paginate(12);
+        $products = Product::where('instock','>', 0)->orderBy('instock','asc')->paginate(9);
 
         return view('product.update', compact("products"));
     }
@@ -62,14 +61,64 @@ class ProductsController extends Controller
 
         ]);
 
+        $product = Product::find($product);
+
+        $description = request()->description;
+
+        $price = request()->price;
+
+        $instock = request()->instock;
+
+
+        $product->update(compact('instock','price','description'));
         
-        dd($product);
 
-       //return view('shop.index', compact("products"));
+        return back();
 
-       
+    }
 
+    public function index_add_new_product()
+    {
+        if (!Auth::user()->isadmin)
+        {
+            return redirect()->to('/home');
+        }
 
+        
+        return view('product.add');
+    }
+
+    public function add_new_product()
+    {
+        if (!Auth::user()->isadmin)
+        {
+            return redirect()->to('/home');
+        }
+
+        $messages = collect();
+
+        $errors = collect();
+
+        $title = request()->title;
+
+        $imagePath = request()->imagePath;
+
+        $description = request()->description;
+
+        $price = request()->price;
+
+        $instock = request()->instock;
+
+        try{
+            $product = Product::create(compact('title','imagePath','description','price','instock'));
+        }
+        catch (Exception $e) {
+             $errors->push('experience exception: ',  $e->getMessage(), "\n");
+        }
+
+        $messages->push($product->title." successfully added");
+        
+        return view('product.add',compact('errors','messages'));
     }
 
     

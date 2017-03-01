@@ -47,7 +47,7 @@ Route::get('/edit_product','ProductsController@edit');
 
 Route::post('/edit_product/{product_id}','ProductsController@edit_product');
 
-Route::get('/add_new_product','ProductsController@index_add');
+Route::get('/add_new_product','ProductsController@index_add_new_product');
 
 Route::post('/add_new_product','ProductsController@add_new_product');
 

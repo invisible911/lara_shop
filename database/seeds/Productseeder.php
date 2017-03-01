@@ -49,6 +49,16 @@ class Productseeder extends Seeder
         ]);
         $product->save();
 
+        $product = new \App\Product([
+            'imagePath' => 'https://images-na.ssl-images-amazon.com/images/I/61ZgsXD2S5L._SX522_.jpg',
+            'title' => 'Come Away with Me [Vinyl]',
+            'description' => '  Norah Jones',
+            'price' => 14,
+            'instock' => 332
+        ]);
+
+        $product->save();
+        
 
         $product = new \App\Product([
             'imagePath' => 'https://images-na.ssl-images-amazon.com/images/I/51jPaZKybLL._SS500.jpg',
@@ -92,6 +102,7 @@ class Productseeder extends Seeder
             'price' => 14,
             'instock' => 332
         ]);
+
         $product->save();
 
        
