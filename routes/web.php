@@ -43,9 +43,9 @@ Route::post('/products','OrdersController@checkout'); //input new products and f
 //admin
 
 
-Route::get('/edit_product','ProductsController@index_edit');
+Route::get('/edit_product','ProductsController@edit');
 
-Route::post('/edit_product/$product_id','ProductsController@edit_product');
+Route::post('/edit_product/{product_id}','ProductsController@edit_product');
 
 Route::get('/add_new_product','ProductsController@index_add');
 

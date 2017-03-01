@@ -6,6 +6,9 @@ a small shop powered by Laravel framework.
 	2. '''config database
 	3. php artisan migrate:refresh
 	4. php artisan db:seed
+
+## test
+	./vendor/bin/phpunit ./tests
 	
 ## Functionalities
 ### User
@@ -28,6 +31,7 @@ a small shop powered by Laravel framework.
 * custom pivot table.
 * pagination.
 * use a third-party package to do the credit card validation.
+* server-side validation and alerts feedback in page when improper inputs.
 * using a queue job to process the checkout.
 * using cache to hold checkout results.
 * updating products in cart after successful checkout.

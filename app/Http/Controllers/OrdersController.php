@@ -67,7 +67,7 @@ class OrdersController extends Controller
 
             'card_cvc' => 'required|cvc',
 
-            'total_price'=>'required||numeric||min:0.1',
+            'total_price'=>'required||numeric||min:0',
 
         ]);
 
