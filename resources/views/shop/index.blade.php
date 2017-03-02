@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    @foreach($products->chunk(3) as $productChunk)
+    @foreach($products->chunk(2) as $productChunk)
         <div class="row">
             @foreach($productChunk as $product)
                 <div class="col-sm-6 col-md-4">
