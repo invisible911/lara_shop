@@ -29,6 +29,7 @@
                                         @php
                                             $total_price = $total_price + $product->pivot->quantity*$product->price 
                                         @endphp
+                                        <img src="{{ $product->imagePath }}" alt="..."  height = 80>
                                         <span class="badge">{{ $product->pivot->quantity }}</span>
                                         <strong>{{ $product->title }}</strong>
                                         <span class="label label-success">${{ $product->price }}</span>
