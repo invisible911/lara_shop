@@ -7,8 +7,13 @@ a small shop powered by Laravel framework.
 	3. php artisan migrate:refresh
 	4. php artisan db:seed
 
-## test
-	./vendor/bin/phpunit ./tests
+
+## use
+	* php artisan serve
+	* default user:
+		190724@qq.com\password
+	* admin user:
+		admin1@laravelshop.com\admin_pass
 	
 ## Functionalities
 ### User

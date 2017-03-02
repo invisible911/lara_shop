@@ -16,7 +16,7 @@ class Userseeder extends Seeder
 
         $user = new \App\User([
         	'name'  => 'admin1',
-        	'email' => 'admin1@shop.com',
+        	'email' => 'admin1@laravelshop.com',
         	'password' => bcrypt('admin_pass'),
         	'isadmin' => true
         ]);
