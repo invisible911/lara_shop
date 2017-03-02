@@ -20,12 +20,13 @@ a small shop powered by Laravel framework.
 
 ### Admin User
 	1. adding new products
-	2. viewing orders
+	2. viewing all orders
 	3. managing products (adding and updating instock status)
+	4. acting as a normal user
 
 ## Implementation features:
 
-* using midware control
+* using middleware control
 * keeping added products in cart after sign up and log in.
 * 'database' carts and apply soft delete product items in a cart.
 * custom pivot table.
@@ -36,5 +37,6 @@ a small shop powered by Laravel framework.
 * using cache to hold checkout results.
 * updating products in cart after successful checkout.
 * updating products instock information after checkout.
+* admin user visit permission control.
 	
 
