@@ -1,14 +1,14 @@
 # lara_shop
 a small shop powered by Laravel framework.
 
-## install
+## to install
 	1. composer update
 	2. '''config database
 	3. php artisan migrate:refresh
 	4. php artisan db:seed
 
 
-## use
+## to use
 	* php artisan serve
 	* default user:
 		190724@qq.com\password
