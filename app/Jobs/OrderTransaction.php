@@ -41,7 +41,7 @@ class OrderTransaction implements ShouldQueue
     }
 
     /**
-     * Execute the job.
+     * Execute the transaction job.
      *
      * @return void
      */
@@ -154,8 +154,4 @@ class OrderTransaction implements ShouldQueue
         return true;
     }
 
-    protected function update_products_after_order($products)
-    {
-
-    }
 }

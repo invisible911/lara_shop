@@ -119,6 +119,11 @@ class OrdersController extends Controller
            
     }
 
+    /**
+     * dispaly all orders
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function orders_all()
     {
         if (!Auth::user()->isadmin)

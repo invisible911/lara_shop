@@ -42,7 +42,11 @@ class Cart extends Model
     	return $this->belongsTo("App\User");
     }
 
-
+    /**
+     * add a Product to a cart
+     *
+     * @return null
+     */
     public function addProduct($product)
     {
         
@@ -64,6 +68,12 @@ class Cart extends Model
 
     }
 
+    /**
+     * remove a Product from a cart
+     *
+     * @return null
+     */
+
     public function removeProduct($product)
     {
 
@@ -73,6 +83,12 @@ class Cart extends Model
 
             $cart->pivot->delete();
     }
+
+    /**
+     * reduce a Product from a cart by 1
+     *
+     * @return null
+     */
 
     public function reduce1Product($product)
     {
@@ -96,6 +112,12 @@ class Cart extends Model
         }
 
     }
+
+    /**
+     * reduce a Product from a cart after order transaction made
+     *
+     * @return null
+     */
 
     public function order_remove_products($products)
     {

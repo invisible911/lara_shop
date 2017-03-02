@@ -19,6 +19,11 @@ class Order extends Model
     
     }
 
+    /**
+     * put products in an order
+     *
+     * @return null
+     */
     public function put_orders($products)
     {
         foreach($products as $product)

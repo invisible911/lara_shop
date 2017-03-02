@@ -31,7 +31,11 @@ class ProductsController extends Controller
     }
 
 
-
+    /**
+     * admin user get the product edit page
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function edit()
     {
         if (!Auth::user()->isadmin)
@@ -43,6 +47,12 @@ class ProductsController extends Controller
 
         return view('product.update', compact("products"));
     }
+
+    /**
+     * admin user update one product after edit
+     *
+     * @return \Illuminate\Http\Response
+     */
 
     public function edit_product($product)
     {   
@@ -77,6 +87,12 @@ class ProductsController extends Controller
 
     }
 
+    /**
+     * admin user get the product add page
+     *
+     * @return \Illuminate\Http\Response
+     */
+
     public function index_add_new_product()
     {
         if (!Auth::user()->isadmin)
@@ -88,6 +104,11 @@ class ProductsController extends Controller
         return view('product.add');
     }
 
+    /**
+     * admin user add a new product
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function add_new_product()
     {
         if (!Auth::user()->isadmin)
