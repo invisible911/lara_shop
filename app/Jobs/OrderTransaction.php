@@ -114,12 +114,6 @@ class OrderTransaction implements ShouldQueue
 
             $this->update_products_after_order($products);
 
-            foreach($products as $product)
-            {
-                $instock = $product->instock - $product->pivot->quantity;
-
-                $update_product = Product::find($product->id)->update(compact('instock'));
-            }
             
 
         }
@@ -154,4 +148,13 @@ class OrderTransaction implements ShouldQueue
         return true;
     }
 
+    protected function update_products_after_order($products)
+    {
+        foreach($products as $product)
+            {
+                $instock = $product->instock - $product->pivot->quantity;
+
+                $update_product = Product::find($product->id)->update(compact('instock'));
+            }
+    }
 }
