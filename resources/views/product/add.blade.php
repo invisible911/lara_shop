@@ -22,57 +22,48 @@
     @endif
 
 
-    <div class="col-sm-8 col-md-6">
-        <form method="POST" action="/add_new_product" id="product-update-form">
-            <div class="thumbnail">    
-                <div class="caption">
-                    <h3>Please Type in Product item information </h3>
-                </div>
-                <div class="row">
-                    <div class="form-group pull-left">
-                        <div class="input-group input-group-sm">
-                            <label for="title">  Title:</label>
-                              <input type="text" class="form-control" name="title"  >
-                        </div>
-                    </div>
 
-                    <div class="form-group pull-left">
-                        <div class="input-group input-group-sm">
-                            <label for="image">  ImagePath:</label>
-                            <input type="text" class="form-control" name="imagePath"  >
-                        </div>
-                    </div>
+    <form class="navbar-form pull-left" method="POST" action="/add_new_product" id="product-update-form">
+        <div class="caption">
+                <h3>Please Type in Product item information </h3>
+        </div>
+       <ul class="breadcrumb">
 
-                    <div class="form-group pull-left">
-                        <div class="input-group input-group-sm">
-                            <label for="desc">  Description:</label>
-                             <textarea  class="form-control" rows="5" name="description" > the descriptions </textarea>
-                        </div>
-                    </div>
-                   
-                   <div class="form-group pull-left">
-                         <div class="input-group input-group-sm">
-                          <label for="price">  price:</label>
-                          <span >$</span>
-                          <input type="text" class="form-control" name="price" value = 10>
-                        </div>
-                    </div>
-         
-                    <div class="form-group pull-left">
-                        <div class="input-group input-group-sm">
-                             <label for="price">  instock:</label>
-                             <input type="text" class="form-control" name="instock"  value = 50 >
-                        </div>
-                    </div>
-                </div>
-                <div class="clearfix">
-                    {{csrf_field()}}
-                    <button  type="submit" class = 'btn btn-primary pull-right' > add </button>
-                </div>
-            </div>
-        </form>
+           <li >
+               <label for="title">  Title:</label><br>
+               <input type="text" class="form-control" name="title"  >
+           </li><br><hr>
 
-    </div>
+           <li>
+               <label for="image">  ImagePath:</label><br>
+               <input type="text" class="form-control" name="imagePath"  >
+           </li><br><hr>
+
+           <li>
+                <label for="desc">  Description:</label><br>
+                 <textarea  class="form-control" rows="5" name="description" > the descriptions </textarea>
+           </li><br><hr>
+
+           <li>
+               <label for="price">  price:</label><br>
+                      <span >$</span>
+              <input type="text" class="form-control" name="price" value = 10>
+           </li><br><hr>
+
+           <li>
+               <label for="price">  instock:</label><br>
+                <input type="text" class="form-control" name="instock"  value = 50 >
+           </li><br><hr>
+           <li class="pull-right">
+              {{csrf_field()}}
+                <button  type="submit" class = 'btn btn-primary  ' > add </button>
+           </li>
+            <br>
+            <br>
+       </ul> 
+
+
+    </form>
 
 
 @endsection
