@@ -1,6 +1,6 @@
 # lara_shop
 a small shop powered by Laravel framework.
-
+built in 10 days and it now go pubic
 ## to install
 	1. composer update
 	2. '''config database
